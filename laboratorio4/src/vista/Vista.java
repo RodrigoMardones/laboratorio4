@@ -4,17 +4,21 @@
  * and open the template in the editor.
  */
 package vista;
-
+import modelo.repository.Repository;
+import vista.vistaAddFile;
+import modelo.archivo.Archivo;
+import java.util.List;
 /**
  *
  * @author rodrigomardones
  */
 public class Vista extends javax.swing.JFrame {
-
+    Repository git;
     /**
      * Creates new form Vista
      */
     public Vista() {
+        this.git = new Repository();
         initComponents();
     }
 
@@ -35,9 +39,9 @@ public class Vista extends javax.swing.JFrame {
         pullButton = new javax.swing.JButton();
         commitButton = new javax.swing.JButton();
         pushButton = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        statusWorkspace = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        statusIndex = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -100,16 +104,21 @@ public class Vista extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setText("status workspace");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        statusWorkspace.setText("status workspace");
+        statusWorkspace.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                statusWorkspaceActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Laboratorio 4 GIT");
 
-        jButton2.setText("Status Index");
+        statusIndex.setText("Status Index");
+        statusIndex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusIndexActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("status Local");
 
@@ -142,9 +151,9 @@ public class Vista extends javax.swing.JFrame {
                                 .addComponent(pushButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(300, 300, 300))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton8)
+                        .addComponent(statusWorkspace)
                         .addGap(26, 26, 26)
-                        .addComponent(jButton2)
+                        .addComponent(statusIndex)
                         .addGap(27, 27, 27)
                         .addComponent(jButton3)
                         .addGap(18, 18, 18)
@@ -158,8 +167,8 @@ public class Vista extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton2)
+                    .addComponent(statusWorkspace)
+                    .addComponent(statusIndex)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
@@ -180,17 +189,27 @@ public class Vista extends javax.swing.JFrame {
 
     private void initButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_initButtonActionPerformed
         // TODO add your handling code here:
+        this.git = new Repository();
+        this.git.gitInit("master");
         System.out.println("init button clicked");
+        
+        
     }//GEN-LAST:event_initButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
         System.out.println("add button clicked");
+        git.gitAdd();
+        
     }//GEN-LAST:event_addButtonActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void statusWorkspaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusWorkspaceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+        List<String> status = this.git.statusWorkingDirectory();
+        for(String file: status){
+            System.out.println(file);
+        }
+    }//GEN-LAST:event_statusWorkspaceActionPerformed
 
     private void commitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commitButtonActionPerformed
         // TODO add your handling code here:
@@ -200,6 +219,11 @@ public class Vista extends javax.swing.JFrame {
     private void addFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFileButtonActionPerformed
         // TODO add your handling code here:
         System.out.println("addFile button clicked");
+        vistaAddFile view = new vistaAddFile();
+        view.setVisible(true);
+        view.git = this.git;
+        System.out.println("-------------git status desde parent-----------");
+        this.git.gitStatus();
     }//GEN-LAST:event_addFileButtonActionPerformed
 
     private void pullButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pullButtonActionPerformed
@@ -212,6 +236,15 @@ public class Vista extends javax.swing.JFrame {
         System.out.println("push button clicked");
     }//GEN-LAST:event_pushButtonActionPerformed
 
+    private void statusIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusIndexActionPerformed
+        // TODO add your handling code here:
+        System.out.println("-----------status index------------");
+        List<String> status = this.git.statusIndex();
+        for(String file: status){
+            System.out.println(file);
+        }    
+    }//GEN-LAST:event_statusIndexActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
@@ -219,13 +252,13 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton commitButton;
     private javax.swing.JButton initButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton8;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton pullButton;
     private javax.swing.JButton pushButton;
+    private javax.swing.JButton statusIndex;
+    private javax.swing.JButton statusWorkspace;
     // End of variables declaration//GEN-END:variables
 }

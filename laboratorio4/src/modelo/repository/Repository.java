@@ -1,6 +1,7 @@
 package modelo.repository;
 
 import java.util.List;
+import java.util.ArrayList;
 import modelo.archivo.Archivo;
 import modelo.commit.Commit;
 import modelo.repozone.RepoZone;
@@ -160,6 +161,30 @@ public class Repository implements RepositoryInterface{
         }
         System.out.println("----end----");
         System.out.println("\n");
+    }
+    /**
+     * 
+     * @return lista de nombres de archivos en string working directory
+     */
+    public List<String> statusWorkingDirectory(){
+        List<Archivo> myfiles = this.workingDirectory.getFilesZone();
+        List<String> result = new ArrayList<String>();
+        for(Archivo file: myfiles){
+            result.add(file.getNombre());
+        }
+        return result;
+    }
+    /**
+     * 
+     * @return lista de nombres de archivos en string ubicados en indexzone
+     */
+    public List<String> statusIndex(){
+        List<Archivo> myfiles = this.indexZone.getFilesZone();
+        List<String> result = new ArrayList<String>();
+        for(Archivo file: myfiles){
+            result.add(file.getNombre());
+        }
+        return result;
     }
     /**
      * 
