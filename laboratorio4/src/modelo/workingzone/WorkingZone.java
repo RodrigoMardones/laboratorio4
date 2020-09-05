@@ -1,8 +1,8 @@
-package workingzone;
+package modelo.workingzone;
 
 import java.util.ArrayList;
 import java.util.List;
-import archivo.Archivo;
+import modelo.archivo.Archivo;
 
 public class WorkingZone implements WorkingZoneInterface {
     private List<Archivo> files;

@@ -1,4 +1,4 @@
-package archivo;
+package modelo.archivo;
 
 import java.util.Date;
 /**

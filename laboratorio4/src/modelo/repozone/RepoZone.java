@@ -1,8 +1,8 @@
-package repozone;
+package modelo.repozone;
 
 import java.util.List;
 import java.util.ArrayList;
-import commit.Commit;
+import modelo.commit.Commit;
 
 public class RepoZone implements RepoZoneInterface {
 

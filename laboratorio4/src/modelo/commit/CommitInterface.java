@@ -1,10 +1,10 @@
-package commit;
+package modelo.commit;
 
 import java.util.Date;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import archivo.Archivo;
+import modelo.archivo.Archivo;
 
 public interface CommitInterface {
     String message = "";

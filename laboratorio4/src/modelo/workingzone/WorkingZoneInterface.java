@@ -1,8 +1,8 @@
-package workingzone;
+package modelo.workingzone;
 
 import java.util.ArrayList;
 import java.util.List;
-import archivo.Archivo;
+import modelo.archivo.Archivo;
 
 public interface WorkingZoneInterface {
     List<Archivo> index = new ArrayList<Archivo>();

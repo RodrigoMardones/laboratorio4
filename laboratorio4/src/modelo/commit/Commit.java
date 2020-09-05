@@ -1,4 +1,4 @@
-package commit;
+package modelo.commit;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import archivo.Archivo;
+import modelo.archivo.Archivo;
 
 public class Commit implements CommitInterface {
     public String message;
