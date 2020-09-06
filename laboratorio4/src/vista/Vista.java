@@ -5,9 +5,12 @@
  */
 package vista;
 import modelo.repository.Repository;
+// liberías de vistas secundarias
 import vista.vistaAddFile;
-import modelo.archivo.Archivo;
+import vista.VistaCommit;
+// librerias extras
 import java.util.List;
+import javax.swing.JOptionPane;
 /**
  *
  * @author rodrigomardones
@@ -42,8 +45,10 @@ public class Vista extends javax.swing.JFrame {
         statusWorkspace = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         statusIndex = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        statusLocal = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        generalList = new javax.swing.JList<>();
 
         jButton1.setText("jButton1");
 
@@ -120,9 +125,21 @@ public class Vista extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("status Local");
+        statusLocal.setText("status Local");
+        statusLocal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusLocalActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("status Remote");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setViewportView(generalList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,26 +156,31 @@ public class Vista extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pullButton, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
                             .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel1))
+                                .addComponent(jLabel1)
+                                .addGap(300, 300, 300))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(commitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pushButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(300, 300, 300))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(5, 5, 5)
+                                        .addComponent(commitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(pushButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1)
+                                .addGap(30, 30, 30))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(statusWorkspace)
                         .addGap(26, 26, 26)
                         .addComponent(statusIndex)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton3)
+                        .addComponent(statusLocal)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,53 +191,79 @@ public class Vista extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(statusWorkspace)
                     .addComponent(statusIndex)
-                    .addComponent(jButton3)
+                    .addComponent(statusLocal)
                     .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(initButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(commitButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addFileButton)
-                    .addComponent(pullButton)
-                    .addComponent(pushButton))
-                .addGap(64, 64, 64))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(initButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(commitButton))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addFileButton)
+                            .addComponent(pullButton)
+                            .addComponent(pushButton))
+                        .addGap(76, 76, 76))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /*
+        terminar el nombre del usuario y el nombre de la rama !
+    
+    */
     private void initButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_initButtonActionPerformed
         // TODO add your handling code here:
         this.git = new Repository();
         this.git.gitInit("master");
         System.out.println("init button clicked");
+        JOptionPane.showMessageDialog(null, "init button clicked");
         
         
     }//GEN-LAST:event_initButtonActionPerformed
-
+    
+    // ----------------------- eventos por boton ----------------------------
+    
+    /*
+        gitAdd implementado
+    */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         // TODO add your handling code here:
         System.out.println("add button clicked");
-        git.gitAdd();
+        String response = git.gitAdd();
+        JOptionPane.showMessageDialog(null, response);
         
     }//GEN-LAST:event_addButtonActionPerformed
-
+    /*
+        statusWorskapce parcialmente implementado
+        mostrar datos en programa
+    */
     private void statusWorkspaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusWorkspaceActionPerformed
         // TODO add your handling code here:
+        generalList.clearSelection();
         List<String> status = this.git.statusWorkingDirectory();
-        for(String file: status){
-            System.out.println(file);
-        }
+        String[] info = new String[status.size()];
+        generalList.setListData(status.toArray(info));
     }//GEN-LAST:event_statusWorkspaceActionPerformed
-
+    /*
+        gitCommit implementado
+    */
     private void commitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commitButtonActionPerformed
         // TODO add your handling code here:
         System.out.println("commit button clicked");
+        VistaCommit view = new VistaCommit();
+        view.setVisible(true);
+        view.git = this.git;
+        this.git.gitStatus();
     }//GEN-LAST:event_commitButtonActionPerformed
-
+    /*
+        addFile implementado
+    */
     private void addFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFileButtonActionPerformed
         // TODO add your handling code here:
         System.out.println("addFile button clicked");
@@ -225,40 +273,69 @@ public class Vista extends javax.swing.JFrame {
         System.out.println("-------------git status desde parent-----------");
         this.git.gitStatus();
     }//GEN-LAST:event_addFileButtonActionPerformed
-
+    /*
+        gitPull implementado
+    */
     private void pullButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pullButtonActionPerformed
         // TODO add your handling code here:
         System.out.println("pull button clicked");
+        String response = this.git.gitPull();
+        JOptionPane.showMessageDialog(null, response);
     }//GEN-LAST:event_pullButtonActionPerformed
-
+    /*
+        gitPush implementado
+    */
     private void pushButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pushButtonActionPerformed
         // TODO add your handling code here:
         System.out.println("push button clicked");
+        String response = this.git.gitPush();
+        JOptionPane.showMessageDialog(null, response);
     }//GEN-LAST:event_pushButtonActionPerformed
-
+    /*
+        statusIndex parcialemente implementado
+        mostrar info en programa
+    */
     private void statusIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusIndexActionPerformed
         // TODO add your handling code here:
-        System.out.println("-----------status index------------");
+        generalList.clearSelection();
         List<String> status = this.git.statusIndex();
-        for(String file: status){
-            System.out.println(file);
-        }    
+        String[] info = new String[status.size()];
+        generalList.setListData(status.toArray(info));
+            
     }//GEN-LAST:event_statusIndexActionPerformed
+
+    private void statusLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusLocalActionPerformed
+
+        generalList.clearSelection();
+        List<String> status = this.git.statusLocal();
+        String[] info = new String[status.size()];
+        generalList.setListData(status.toArray(info));   
+    }//GEN-LAST:event_statusLocalActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+        generalList.clearSelection();
+        List<String> status = this.git.statusRemote();
+        String[] info = new String[status.size()];
+        generalList.setListData(status.toArray(info));   
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JButton addFileButton;
     private javax.swing.JButton commitButton;
+    private javax.swing.JList<String> generalList;
     private javax.swing.JButton initButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton pullButton;
     private javax.swing.JButton pushButton;
     private javax.swing.JButton statusIndex;
+    private javax.swing.JButton statusLocal;
     private javax.swing.JButton statusWorkspace;
     // End of variables declaration//GEN-END:variables
 }

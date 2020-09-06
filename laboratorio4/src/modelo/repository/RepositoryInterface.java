@@ -13,10 +13,10 @@ public interface RepositoryInterface {
     RepoZone RemoteRepo = new RepoZone();
 
     void gitInit(String repoName);
-    void gitAdd();
-    void gitCommit(String message);
-    void gitPush();
-    void gitPull();
+    String gitAdd();
+    String gitCommit(String message);
+    String gitPush();
+    String gitPull();
     void gitStatus();
     void addFileToworkingDirectory(Archivo file);
 }
