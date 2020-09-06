@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package vista;
+import java.util.Collections;
 import modelo.repository.Repository;
 // liberías de vistas secundarias
 import vista.vistaAddFile;
@@ -228,7 +229,6 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_initButtonActionPerformed
     
     // ----------------------- eventos por boton ----------------------------
-    
     /*
         gitAdd implementado
     */
@@ -308,6 +308,10 @@ public class Vista extends javax.swing.JFrame {
 
         generalList.clearSelection();
         List<String> status = this.git.statusLocal();
+        if(status.size() > 2){
+            status = status.subList(status.size() - 3, status.size());
+        }
+        Collections.reverse(status);
         String[] info = new String[status.size()];
         generalList.setListData(status.toArray(info));   
     }//GEN-LAST:event_statusLocalActionPerformed
@@ -316,6 +320,10 @@ public class Vista extends javax.swing.JFrame {
 
         generalList.clearSelection();
         List<String> status = this.git.statusRemote();
+        if(status.size() > 2 ){
+            status = status.subList(status.size() - 3, status.size());
+        }
+        Collections.reverse(status);
         String[] info = new String[status.size()];
         generalList.setListData(status.toArray(info));   
     }//GEN-LAST:event_jButton4ActionPerformed
