@@ -92,11 +92,19 @@ public class VistaCommit extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * descrip: funcion que cierra la vista de commit
+     * @param evt evento asociado a click
+     * @return void
+     */
     private void salirCommitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirCommitActionPerformed
         this.dispose();
     }//GEN-LAST:event_salirCommitActionPerformed
-
+    /**
+     * descrip: funcion que crea el commit en el repo con sus respectivos parametros
+     * @param evt evento asociado al click del boton
+     * @return void
+     */
     private void crearCommitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearCommitActionPerformed
         String mensaje = messageCommit.getText();
         if(mensaje == null){

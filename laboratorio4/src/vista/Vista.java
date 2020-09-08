@@ -228,10 +228,12 @@ public class Vista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    /*
-        terminar el nombre del usuario y el nombre de la rama !
-    
-    */
+
+    /***
+     * descrip: funcion que ejecuta el git init de nuestro flujo
+     * @param evt evento asociado al click del boton
+     * @return void
+     */
     private void initButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_initButtonActionPerformed
 
         VistaInit view = new VistaInit();
@@ -240,9 +242,11 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_initButtonActionPerformed
     
     // ----------------------- eventos por boton ----------------------------
-    /*
-        gitAdd implementado
-    */
+    /**
+     * descrip: funcion que ejecuta git add de nuestro flujo
+     * @param evt evento asociado al click del boton
+     * @return void
+     */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         if(!this.isActive()){
             JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
@@ -253,10 +257,11 @@ public class Vista extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, response);
         
     }//GEN-LAST:event_addButtonActionPerformed
-    /*
-        statusWorskapce parcialmente implementado
-        mostrar datos en programa
-    */
+    /**
+     * descrip: funcion que muestra en pantalla el status del workspace
+     * @param evt evento asociado al click del boton
+     * @return void
+     */
     private void statusWorkspaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusWorkspaceActionPerformed
         if(!this.isActive()){
             JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
@@ -267,9 +272,11 @@ public class Vista extends javax.swing.JFrame {
         String[] info = new String[status.size()];
         generalList.setListData(status.toArray(info));
     }//GEN-LAST:event_statusWorkspaceActionPerformed
-    /*
-        gitCommit implementado
-    */
+    /**
+     * descrip funcion que crear un commit en nuestro flujo de trabajo
+     * @param evt evento asociado al click del bootn
+     * @return void
+     */
     private void commitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commitButtonActionPerformed
         if(!this.isActive()){
             JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
@@ -281,9 +288,11 @@ public class Vista extends javax.swing.JFrame {
         view.git = this.git;
         this.git.gitStatus();
     }//GEN-LAST:event_commitButtonActionPerformed
-    /*
-        addFile implementado
-    */
+    /**
+     * descrip: funcion que nos permite agregar un archivo al workspace
+     * @param evt evento asociado al click del boton
+     * @return void
+     */
     private void addFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFileButtonActionPerformed
         if(!this.isActive()){
             JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
@@ -294,9 +303,11 @@ public class Vista extends javax.swing.JFrame {
         view.setVisible(true);
         view.git = this.git;
     }//GEN-LAST:event_addFileButtonActionPerformed
-    /*
-        gitPull implementado
-    */
+    /**
+     * descrip: funcion que permite realizar el pull de nuestros commits en el flujo de trabajo
+     * @param evt evento asociado al click del boton
+     * @return void
+     */
     private void pullButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pullButtonActionPerformed
         if(!this.isActive()){
             JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
@@ -306,9 +317,12 @@ public class Vista extends javax.swing.JFrame {
         String response = this.git.gitPull();
         JOptionPane.showMessageDialog(null, response);
     }//GEN-LAST:event_pullButtonActionPerformed
-    /*
-        gitPush implementado
-    */
+    
+    /**
+     * descrip: funcion que permite realizar el push de nuestros commits en el flujo de trabajo
+     * @param evt evento asociado al click del boton
+     * @return void
+     */
     private void pushButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pushButtonActionPerformed
         if(!this.isActive()){
             JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
@@ -318,10 +332,12 @@ public class Vista extends javax.swing.JFrame {
         String response = this.git.gitPush();
         JOptionPane.showMessageDialog(null, response);
     }//GEN-LAST:event_pushButtonActionPerformed
-    /*
-        statusIndex parcialemente implementado
-        mostrar info en programa
-    */
+    
+    /**
+     * descrip: funcion que permite revisar el status del IndexZone de nuestro flujo de trabajo
+     * @param evt evento asociado al click del boton
+     * @return void
+     */
     private void statusIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusIndexActionPerformed
         
         if(!this.isActive()){
@@ -335,6 +351,11 @@ public class Vista extends javax.swing.JFrame {
             
     }//GEN-LAST:event_statusIndexActionPerformed
 
+    /**
+     * descrip: funcion que permite mostrar el status de nuestro Local Repository 
+     * @param evt evento asociado al click del boton
+     * @return void
+     */
     private void statusLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusLocalActionPerformed
         if(!this.isActive()){
             JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
@@ -350,6 +371,12 @@ public class Vista extends javax.swing.JFrame {
         generalList.setListData(status.toArray(info));   
     }//GEN-LAST:event_statusLocalActionPerformed
 
+
+    /**
+     * descrip: funcion que permite mostrar el status de nuestro Remote Repository
+     * @param evt evento asociado al click del boton
+     * @return void
+     */
     private void statusRemoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusRemoteActionPerformed
         if(!this.isActive()){
             JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
@@ -365,6 +392,10 @@ public class Vista extends javax.swing.JFrame {
         generalList.setListData(status.toArray(info));   
     }//GEN-LAST:event_statusRemoteActionPerformed
 
+    /**
+     * funcion que nos dice el estado de nuestro git asociado al nombre
+     * @return boolean
+     */
     public boolean isActive(){
         return this.git.repoName != null;          
     }

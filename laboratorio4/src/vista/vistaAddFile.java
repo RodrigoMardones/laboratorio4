@@ -110,9 +110,13 @@ public class vistaAddFile extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * descrip: funcion que nos permite agregar un archivo al workingspace de nuestro repo 
+     * @param evt evento asociado al click del boton
+     * @return void
+     */
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
-        // TODO add your handling code here:
+
         String content = contentInput.getText();
         String title = titleInput.getText();
         if(content == null || title == null){
@@ -126,12 +130,15 @@ public class vistaAddFile extends javax.swing.JFrame {
     }//GEN-LAST:event_agregarActionPerformed
 
     private void titleInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleInputActionPerformed
-        // TODO add your handling code here:
         
     }//GEN-LAST:event_titleInputActionPerformed
-
+    
+    /**
+     * descrip: funcion asociada al cierre de la vista
+     * @param evt evento asociado al click del boton
+     * @return void
+     */
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
-        // TODO add your handling code here:
         setVisible(false);
     }//GEN-LAST:event_cerrarActionPerformed
 

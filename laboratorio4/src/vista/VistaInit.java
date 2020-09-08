@@ -104,11 +104,19 @@ public class VistaInit extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_nameInputActionPerformed
-
+    /**
+     * descrip: funcion que cierra la vista asociada al init
+     * @param evt evento asociado al click del boton
+     * @return void
+     */
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
-
+    /**
+     * descrip: funcion que inicia el repo con sus respectivos parametros
+     * @param evt evento asociado al click del boton
+     * @return void
+     */
     private void iniciarRepoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarRepoActionPerformed
         String nombreRepo = projectInput.getText();
         String nombreUsuario = nameInput.getText();
