@@ -1,0 +1,15 @@
+REQUERIMIENTOS FUNCIONALES
+
+modelos de git implmentados en capa de modelos : 1
+funcionalidades minimas agregadas(init,add,commit,push y pull) : 1
+estados de zonas de trabajo: 1
+entorno grafico: 1
+
+REQUERIMIENTOS NO FUNCIONALES
+
+Implementacion utiliza OpenJDK y java swing: 1
+Implementacion orientada a objetos: 1
+separacion de capas en modelo y vista: 1
+claridad en codigo : 1
+diagramas de clase pre y post Implementacion : 1
+historial de github: 1
