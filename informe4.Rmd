@@ -51,8 +51,6 @@ Para abordar el problema se plantean lo siguientes objectivos especificos
 
 # Descripción del problema
 
-# Descripción del problema
-
 La necesidad de mantener y producir software escalable, ordenado y mantenible durante el tiempo es una cuestión importante dentro de la industria. Poder llevar todos los cambios asociados a un proyecto, trabajado por un grupo importante de personas y todo lo que conlleva el manejo de errores es parte de lo que resuelven los software denominados "controladores de versiones".
 
 Para el problema en cuestión se requiere de una pieza de software que permita realizar las siguientes acciones dentro de un directorio de trabajo, independiente del trabajo realizado dentro de este:
@@ -85,11 +83,37 @@ En general los lenguajes que implementan este paradigma poseen eventos ya predef
 
 \newpage
 
-# Análisis del problema
+# Analisis del problema
+
+Para el problema en cuestion se han dispuesto de dos packetes principales, uno orientado a las vistas y otro orientado al modelo, estos paquetes conforman el proyecto, las vistas se encargan de la presentación y tienen total dominio del modelo, a su vez el modelo solo se encarga de realizar las acciones asociadas al manejo de la información y se desentienden del modelo como tal, los elementos subdividos son:
+
+* vista:
+  * vista: vista principal que se encarga de mostrar las funcionalidades asociadas al modelo general 
+  * vistaInit: vista asociada al iniciar un nuevo modelo, toma como entradas el nombre del usuario y el nombre del repositorio
+  * vistaAddFile: vista asociada a la creación de un archivo, toma como entradas el nombre del archivo y el contenido de este
+  * vistaCommit: vista asociada a la creacion de un commit, toma como entrada el comentario asociado al commit
+  
+Dentro de la vista principal tenemos eventos y sus distintos manejadores a través de botones, estos se encargan de implementar los estados correspondientes al flujo de del modelo asociado que mencionaremos a continuación:
+
+* modelo:
+  * WorkingDirectory: Espacio de trabajo donde agregaremos los archivos que queramos agregar como cambios en nuestro flujo de trabajo principal.
+  * IndexZone: Espacio de trabajo donde se preparan los archivos que están listos para ser enviados al nuestra rama de trabajo y que cuentan como cambio oficial dentro
+  de nuestro flujo de trabajo mencionado.
+  * Local Repository: Espacio de trabajo donde se encuentran nuestros cambios locales, no compartidos con el equipo de trabajo en su totalidad.
+  * Remote Repositoyry: Espacio de trabajo donde se guardan nuestros cambios globales, estos son compartidos en su totalidad por el equipo de trabajo que utiliza el     espacio en cuestión.
+
+A su vez se define una unidad llamada "Commit", el commit es una entidad que contiene todos los archivos que asociados a un cambios dentro de nuestro trabajo, junto con un mensaje,meta datos y la información correspondiente a la persona que hizo este cambio. Estos commits solo se encuentran en dos espacios de trabajo los cuales son "Local Repository" y "Remote Repository". 
+
+A su vez se desprende la unidad de "Archivo", el "archivo" es la unidad de minima dentro de un commit y como su nombre lo indica es donde nosotros trabajamos y realizamos cambios en nuestro proyecto en cuestion.
+
 
 \newpage
 
 # Diseño de la solución
+
+Para el diseño de nuestra solución tenemos el siguiente diagrama de UML que muestra la relación de nuestras clases, antes de implementar el paradigma orientado a eventos: 
+
+![](umlsolucion.png)
 
 \newpage
 
@@ -110,4 +134,12 @@ En general los lenguajes que implementan este paradigma poseen eventos ya predef
 \newpage
 
 # Referencias
+
+Para el desarrollo de este proyecto se han ocupado las siguientes fuentes o libros:
+  
+* Christos G. Cassandras (2014) The event-driven paradigm for control, communication and optimization, Journal of Control and Decision, 1:1, 3-17, DOI: 10.1080/23307706.2014.885288
+
+* Schildt, Herbert. Java: The Complete Reference, Eleventh Edition. New York: McGraw-Hill Education, 2018.
+
+
 
