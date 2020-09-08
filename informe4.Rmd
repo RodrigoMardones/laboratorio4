@@ -160,7 +160,7 @@ Nuestro programa contiene 3 package principales los cuales a su vez se subdivide
 
 * Vista : Contiene una clase principal y 3 subclases que actuan como dependencias a esta.
 
-* main : clase que construye nuestra Vista principal y nos permite interactuar con esta.
+* laboratorio4(main) : clase que construye nuestra Vista principal y nos permite interactuar con esta.
 
 A su vez todo el codigo fuente se concentra en el directorio "src" dentro del directorio "lab3". Se han ocupado librerías propias del lenguaje para trabajar de mejor manera cada una de las clases ya mencionadas. esta librerías son.
 
