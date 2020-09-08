@@ -9,6 +9,7 @@ import modelo.repository.Repository;
 // liberías de vistas secundarias
 import vista.vistaAddFile;
 import vista.VistaCommit;
+import vista.VistaInit;
 // librerias extras
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -47,9 +48,11 @@ public class Vista extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         statusIndex = new javax.swing.JButton();
         statusLocal = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        statusRemote = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         generalList = new javax.swing.JList<>();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -133,14 +136,16 @@ public class Vista extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("status Remote");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        statusRemote.setText("status Remote");
+        statusRemote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                statusRemoteActionPerformed(evt);
             }
         });
 
         jScrollPane1.setViewportView(generalList);
+
+        jLabel2.setText("Consola de información");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,13 +160,9 @@ public class Vista extends javax.swing.JFrame {
                             .addComponent(addFileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pullButton, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                            .addComponent(pullButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel1)
-                                .addGap(300, 300, 300))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -171,8 +172,13 @@ public class Vista extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(pushButton, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1)
-                                .addGap(30, 30, 30))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1)))
+                        .addGap(14, 14, 14))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(statusWorkspace)
                         .addGap(26, 26, 26)
@@ -180,8 +186,11 @@ public class Vista extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addComponent(statusLocal)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)
-                        .addContainerGap())))
+                        .addComponent(statusRemote)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,10 +202,12 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(statusWorkspace)
                     .addComponent(statusIndex)
                     .addComponent(statusLocal)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                    .addComponent(statusRemote))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(initButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,9 +218,12 @@ public class Vista extends javax.swing.JFrame {
                             .addComponent(pullButton)
                             .addComponent(pushButton))
                         .addGap(76, 76, 76))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
         );
 
         pack();
@@ -219,13 +233,10 @@ public class Vista extends javax.swing.JFrame {
     
     */
     private void initButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_initButtonActionPerformed
-        // TODO add your handling code here:
-        this.git = new Repository();
-        this.git.gitInit("master");
-        System.out.println("init button clicked");
-        JOptionPane.showMessageDialog(null, "init button clicked");
-        
-        
+
+        VistaInit view = new VistaInit();
+        view.show();
+        view.git = this.git;      
     }//GEN-LAST:event_initButtonActionPerformed
     
     // ----------------------- eventos por boton ----------------------------
@@ -233,7 +244,10 @@ public class Vista extends javax.swing.JFrame {
         gitAdd implementado
     */
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
+        if(!this.isActive()){
+            JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
+            return;
+        }
         System.out.println("add button clicked");
         String response = git.gitAdd();
         JOptionPane.showMessageDialog(null, response);
@@ -244,7 +258,10 @@ public class Vista extends javax.swing.JFrame {
         mostrar datos en programa
     */
     private void statusWorkspaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusWorkspaceActionPerformed
-        // TODO add your handling code here:
+        if(!this.isActive()){
+            JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
+            return;
+        }
         generalList.clearSelection();
         List<String> status = this.git.statusWorkingDirectory();
         String[] info = new String[status.size()];
@@ -254,7 +271,10 @@ public class Vista extends javax.swing.JFrame {
         gitCommit implementado
     */
     private void commitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commitButtonActionPerformed
-        // TODO add your handling code here:
+        if(!this.isActive()){
+            JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
+            return;
+        }
         System.out.println("commit button clicked");
         VistaCommit view = new VistaCommit();
         view.setVisible(true);
@@ -265,19 +285,23 @@ public class Vista extends javax.swing.JFrame {
         addFile implementado
     */
     private void addFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFileButtonActionPerformed
-        // TODO add your handling code here:
+        if(!this.isActive()){
+            JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
+            return;
+        }
         System.out.println("addFile button clicked");
         vistaAddFile view = new vistaAddFile();
         view.setVisible(true);
         view.git = this.git;
-        System.out.println("-------------git status desde parent-----------");
-        this.git.gitStatus();
     }//GEN-LAST:event_addFileButtonActionPerformed
     /*
         gitPull implementado
     */
     private void pullButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pullButtonActionPerformed
-        // TODO add your handling code here:
+        if(!this.isActive()){
+            JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
+            return;
+        }
         System.out.println("pull button clicked");
         String response = this.git.gitPull();
         JOptionPane.showMessageDialog(null, response);
@@ -286,7 +310,10 @@ public class Vista extends javax.swing.JFrame {
         gitPush implementado
     */
     private void pushButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pushButtonActionPerformed
-        // TODO add your handling code here:
+        if(!this.isActive()){
+            JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
+            return;
+        }
         System.out.println("push button clicked");
         String response = this.git.gitPush();
         JOptionPane.showMessageDialog(null, response);
@@ -296,7 +323,11 @@ public class Vista extends javax.swing.JFrame {
         mostrar info en programa
     */
     private void statusIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusIndexActionPerformed
-        // TODO add your handling code here:
+        
+        if(!this.isActive()){
+            JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
+            return;
+        }
         generalList.clearSelection();
         List<String> status = this.git.statusIndex();
         String[] info = new String[status.size()];
@@ -305,7 +336,10 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_statusIndexActionPerformed
 
     private void statusLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusLocalActionPerformed
-
+        if(!this.isActive()){
+            JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
+            return;
+        }
         generalList.clearSelection();
         List<String> status = this.git.statusLocal();
         if(status.size() > 2){
@@ -316,8 +350,11 @@ public class Vista extends javax.swing.JFrame {
         generalList.setListData(status.toArray(info));   
     }//GEN-LAST:event_statusLocalActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+    private void statusRemoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusRemoteActionPerformed
+        if(!this.isActive()){
+            JOptionPane.showMessageDialog(null, "repositorio no iniciado !");
+            return;
+        }
         generalList.clearSelection();
         List<String> status = this.git.statusRemote();
         if(status.size() > 2 ){
@@ -326,9 +363,11 @@ public class Vista extends javax.swing.JFrame {
         Collections.reverse(status);
         String[] info = new String[status.size()];
         generalList.setListData(status.toArray(info));   
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_statusRemoteActionPerformed
 
-
+    public boolean isActive(){
+        return this.git.repoName != null;          
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JButton addFileButton;
@@ -336,14 +375,16 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JList<String> generalList;
     private javax.swing.JButton initButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton pullButton;
     private javax.swing.JButton pushButton;
     private javax.swing.JButton statusIndex;
     private javax.swing.JButton statusLocal;
+    private javax.swing.JButton statusRemote;
     private javax.swing.JButton statusWorkspace;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,13 +6,14 @@ import modelo.repozone.RepoZone;
 
 public interface RepositoryInterface {
     String repoName = "";
+    String userName = "";
     // working directory
     WorkingZone workingDirectory = new WorkingZone();
     WorkingZone indexZone = new WorkingZone();
     RepoZone LocalRepo = new RepoZone();
     RepoZone RemoteRepo = new RepoZone();
 
-    void gitInit(String repoName);
+    void gitInit(String repoName, String userName);
     String gitAdd();
     String gitCommit(String message);
     String gitPush();

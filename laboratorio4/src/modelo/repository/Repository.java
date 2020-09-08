@@ -9,7 +9,8 @@ import modelo.workingzone.WorkingZone;
 
 public class Repository implements RepositoryInterface{
 
-    String repoName;
+    public String repoName;
+    public String userName;
     private WorkingZone workingDirectory;
     private WorkingZone indexZone;
     private RepoZone localRepo;
@@ -29,8 +30,9 @@ public class Repository implements RepositoryInterface{
      * @param newRepoName nombre del repo para inicializar
      *
      */
-    public void gitInit(String newRepoName) {
+    public void gitInit(String newRepoName, String newUserName) {
         this.repoName = newRepoName;
+        this.userName = newUserName;
     }
 
     /**

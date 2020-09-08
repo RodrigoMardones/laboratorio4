@@ -1,7 +1,6 @@
 ---
 title: "Laboratorio 4: Paradigma Orientado a eventos"
 author: "Rodrigo Mardones Aguilar"
-date: "9/6/2020"
 output: pdf_document
 fontsize: 12pt
 geometry: margin=1in
@@ -179,6 +178,8 @@ El proyecto fue creado en un equipo macOS, la que a su vez utilizó como base ja
 
 # Instrucciones de uso
 
+Al ejecutar el programa principal se desplegará una interfaz grafica con distintos botones, cada uno de ellos indicando su funcionalidad correspondiente. La interfaz principal se ha divido en dos sectores principales, el menú de status de zonas y el menu de estados de GIT, además de un lista donde se mostrarán los estados o commits al momento de clickearse algún estado correspondiente, para iniciar la simulación desde cero primero debemos dara click a gitInit, este nos desplegará otra ventana y nos permitirá crear un repository nuevo, cabe destacar que hacer al hacer esto se perderán los datos del repositorio previamente creado. Ninguna funcionalidad se activará hasta crear un repo de manera correcta.
+
 \newpage
 
 # Resultados y Autoevaluación
@@ -195,7 +196,7 @@ A continuación se listarán los requerimientos completados como resultado de la
 | statusWorkspace | si | 100% |
 | statusIndex | sí | 100% |
 | statusLocalRepository | sí | 100% |
-| statusRemoteRepository | sí 100% |
+| statusRemoteRepository | sí | 100% |
 
 todos los requerimientos funcionales se han cumplido para este laboratorio, respetando el uso del paradigma correspondiente y sus utilidades, un caso no probado sí  es el de gitPull cuando el RemoteRepository supera a en commits al LocalRepository a pesar de que se encuentra el codigo disponible para ello.
 
@@ -203,6 +204,11 @@ todos los requerimientos funcionales se han cumplido para este laboratorio, resp
 \newpage
 
 # Conclusiones
+
+Después de terminar con las pruebas correspondientes y ejecución del codigo podemos concluir que la pieza de software emula en su totalidad con lo requerido por el laboratorio en cuestión. Utilizando el paradigma de programcion orientado a objetos como marco de trabajo. Una vez analizado este informe, y tomando las indicaciones realizadas para poder ejecutar el programa. Se puede apreciar que el paradigma utilizado nos permite modelar de manera eficiente cada una de las partes que constituyen el problema explicado.
+
+
+El paradigma orientado a eventos nos muestra una nueva perspectiva en terminos de solución a problemas, pues prioriza las interacciones y los eventos que se ven envueltos para actuar conforme a estos. a pesar de qué nos apoyamos en el paradigma anterior para manejar de forma eficiente ambos, podemos indicar que la mayor diferencia entre ambos son la estructura en torno al cómo mostrar describir nuestro TDA y el cómo ambos modelan estos. sin duda el paradigma orientado a eventos está mucho más asociado a responder a problemas de caracter asincrono y no estructurado del todo. pues este escucha los eventos asociados a sensores y solo en ese momento, ejecuta las subrutinas correspondiente, a diferencia del POO que nos permite modelar de manera ordenada una objeto y cómo este se comporta, sabiendo su comportamiento de ante mano.
 
 \newpage
 
