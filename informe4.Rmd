@@ -111,13 +111,69 @@ A su vez se desprende la unidad de "Archivo", el "archivo" es la unidad de minim
 
 # Diseño de la solución
 
-Para el diseño de nuestra solución tenemos el siguiente diagrama de UML que muestra la relación de nuestras clases, antes de implementar el paradigma orientado a eventos: 
+Para el diseño de nuestra solución tenemos los siguiente diagrama de UML que muestra la relación de nuestras clases, antes de implementar el paradigma orientado a eventos y después de su implementación: 
 
 ![](umlsolucion.png)
 
 \newpage
 
+![](umlsolucionfinal.png)
+\newpage
+
+Tenemos cinco clases principales asociadas al modelo que implementan sus interfaces correspondientes para una mayor comprension entre el contrato que tienen con el diseño, estas son :
+
+* Archivo: Clase que representa un archivo de texto plano dentro de la simulación creada.
+
+* Commit : Clase que representa un cambio dentro de nuestro flujo del trabajo dentro de la simulación. Esta Contiene una Lista de Archivos ya actualizados o agregados en la rama de trabajo.
+
+* WorkingZone: Clase que tiene como objetivo representar las dos primeras estaciones de trabajo de la simulación. "WorkingDirectory" e "Index". Estas áreas solo manejan archivos entre sí y representan los estados de trabajo en progreso y teminado en la simulación.
+
+* RepoZone: Clase que tiene como objetivo representar las siguientes dos estaciones de trabajo de la simulación. "Local Respository" y "RemoteRepository". Estas áreas manejan los commits que se guardan como cambios en el flujo de trabajo de un proyecto. 
+
+*Repository : Clase principal que contiene a las otras zonas, permite agregar archivos al "workingDirectory", moverlos al "index", crear commits para el "local Repository" y subir los cambios al "Remote Repository", además de mostrarnos los estados de cada zona en cuestión.
+
+Para la vista tenemos cuatro clases principales que conforman la interfaz de usuario final y contienen las interacciones necesarias para llevar a cabo el uso correspondiente del modelo, estas son:
+
+* Vista : Clase que tiene como objetivo la construcción de la interfaz principal de usuario, creando todos los botones y sus respectivos eventos asociados a cada proceso del modelo.
+
+* VistaInit : clase implementada en Vista que tiene como objetivo crear una interfaz simple para hacer gitInit dentro del flujo del modelo.
+
+* VistaAddFile : clase implementada en Vista que tiene como objetivo crear una interfaz simple para hacer addFile al workspace del flujo del modelo.
+
+* VistaCommit : clase implementa en vista que tiene como objetico crear una interfaz simple para crear un commit y agregarlo al localRepository del flujo del modelo
+
+\newpage
+
 # Aspectos de la implementación
+
+Nuestro programa contiene 3 package principales los cuales a su vez se subdividen en packages secundarias que nombraremos a continuación:
+
+* modelo:
+  * archivo: Contiene la interface de "Archivo" y la definición de clase del mismo.
+
+  * commit : Contiene la interace de "Commit" y la definción de clase del mismo.
+
+  * repozone: Contiene la interface "RepoZone" y la definición de clase del mismo.
+
+  * workingzone: conitene la interface de "WorkingZone" y la definición de clase del mismo.
+
+  * repository: Contiene la interface de "Repository" y la definición de clase del mismo.
+
+* Vista : Contiene una clase principal y 3 subclases que actuan como dependencias a esta.
+
+* main : clase que construye nuestra Vista principal y nos permite interactuar con esta.
+
+A su vez todo el codigo fuente se concentra en el directorio "src" dentro del directorio "lab3". Se han ocupado librerías propias del lenguaje para trabajar de mejor manera cada una de las clases ya mencionadas. esta librerías son.
+
+* Date: librería para manejor del tiempo ordenado, utilizado en archivos y commits.
+
+* List: librería para el manejo de listas de cualquier tipo de elemento asociado a estas.
+
+* Instant: libreria utilizada dentro de Commit para crear un hash con respecto al momento en el que este es creado.
+
+* Swing : Librería principal para la construcción de la interfaz de usuario, sus subclases y componentes nos permiten manejar y sobreescribir los eventos correspondientes para poder hacer uso del paradigma orientado a eventos de manera eficaz
+
+El proyecto fue creado en un equipo macOS, la que a su vez utilizó como base java version "1.8.0_111". Otros directorios y archivos como "nbproject" y build.xml forman parte del "ide" utilizado en primera instancia para trabajar en este proyecto pero no son requeridos para poder ejecutarlo. 
 
 \newpage
 
@@ -126,6 +182,23 @@ Para el diseño de nuestra solución tenemos el siguiente diagrama de UML que mu
 \newpage
 
 # Resultados y Autoevaluación
+
+A continuación se listarán los requerimientos completados como resultado de la creación de este simulación.
+
+| requerimiento | completado | grado de completacion |
+| -- | -- | -- |
+| gitInit | si | 100% |
+| gitAdd | si | 100% |
+| gitCommit | si | 100% |
+| gitPush | si | 100% |
+| gitPull | si | 100% |
+| statusWorkspace | si | 100% |
+| statusIndex | sí | 100% |
+| statusLocalRepository | sí | 100% |
+| statusRemoteRepository | sí 100% |
+
+todos los requerimientos funcionales se han cumplido para este laboratorio, respetando el uso del paradigma correspondiente y sus utilidades, un caso no probado sí  es el de gitPull cuando el RemoteRepository supera a en commits al LocalRepository a pesar de que se encuentra el codigo disponible para ello.
+
 
 \newpage
 

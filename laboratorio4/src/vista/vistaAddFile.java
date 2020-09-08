@@ -11,9 +11,7 @@ import modelo.archivo.Archivo;
  * @author rodrigomardones
  */
 public class vistaAddFile extends javax.swing.JFrame {
-    
-    String title;
-    String content;
+
     Repository git;
     /**
      * Creates new form vistaAddFile
@@ -115,12 +113,12 @@ public class vistaAddFile extends javax.swing.JFrame {
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         // TODO add your handling code here:
-        this.content = contentInput.getText();
-        this.title = titleInput.getText();
-        if(this.content == null || this.title == null){
+        String content = contentInput.getText();
+        String title = titleInput.getText();
+        if(content == null || title == null){
             System.out.println("error");
         }else{
-            Archivo a = new Archivo(this.title, this.content);
+            Archivo a = new Archivo(title, content);
             git.addFileToworkingDirectory(a);
             git.gitStatus();
         }
